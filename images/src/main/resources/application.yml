@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    hikari:
+      minimumIdle: 2
+      maximumPoolSize: 10
+      idleTimeout: 120000
+      connectionTimeout: 300000
+      maxLifetime: 3000000
+      leakDetectionThreshold: 300000
+    username: ${mysql_user}
+    password: ${mysql_password}
+    url: jdbc:mysql://${mysql_ip}:3306/${mysql_db}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect

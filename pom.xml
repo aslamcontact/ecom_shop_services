@@ -13,6 +13,7 @@
   <url>http://www.example.com</url>
     <modules>
         <module>catelog</module>
+        <module>images</module>
     </modules>
 
 
