@@ -1,7 +1,6 @@
-
+server:
+  port: 8089
 spring:
-  application:
-     name: images
   datasource:
     hikari:
       minimumIdle: 2
@@ -20,5 +19,3 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
-server:
-  port: 8089

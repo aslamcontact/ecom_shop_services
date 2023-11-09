@@ -12,16 +12,6 @@ services:
         ipv4_address: 10.5.0.3
 
 
-  mongo-express:
-    image: mongo-express
-    restart: always
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: aslam
-      ME_CONFIG_MONGODB_ADMINPASSWORD: aslam_pass
-      ME_CONFIG_MONGODB_URL: mongodb://aslam:aslam_pass@10.5.0.3:27017/
-    networks:
-      api_net:
-        ipv4_address: 10.5.0.4
   mysql:
     image: ubuntu/mysql:latest
     restart: always
