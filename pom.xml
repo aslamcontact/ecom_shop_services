@@ -15,6 +15,7 @@
         <module>catelog</module>
         <module>images</module>
         <module>eureka-server</module>
+        <module>ventors</module>
     </modules>
 
 
