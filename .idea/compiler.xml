@@ -6,9 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="images" />
         <module name="catelog" />
         <module name="eureka-server" />
-        <module name="images" />
+        <module name="ventors" />
       </profile>
     </annotationProcessing>
   </component>
