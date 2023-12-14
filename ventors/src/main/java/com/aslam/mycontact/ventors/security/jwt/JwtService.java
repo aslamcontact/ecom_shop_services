@@ -1,5 +1,6 @@
 package com.aslam.mycontact.ventors.security.jwt;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -11,6 +12,7 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 @Service
 public class JwtService {
@@ -28,6 +30,20 @@ public class JwtService {
         return generateToken(new HashMap<>(),userDetails);
     }
 
+
+    public <T> T extractClaim(String jwt, Function<Claims,T> claimsResolver)
+    {
+        final Claims claims=extractAllClaims(jwt);
+        return claimsResolver.apply(claims);
+    }
+    public Claims extractAllClaims(String jwt)
+    {
+        return Jwts.parserBuilder()
+                .setSigningKey(getSignInKey())
+                .build()
+                .parseClaimsJws(jwt)
+                .getBody();
+    }
     public String generateToken(
             Map<String,Object> extraClaims,
             UserDetails userDetails
