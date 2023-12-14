@@ -25,6 +25,27 @@ public class JwtService {
 
     }
 
+    public String extractUserName(String jwt)
+    {
+        return extractClaim(jwt,Claims::getSubject);
+    }
+
+    private Date extractExpiration(String jwt)
+    {
+        return  extractClaim(jwt,Claims::getExpiration);
+    }
+    private boolean isTokenIsExpired(String jwt)
+    {
+        return extractExpiration(jwt).before(new Date());
+    }
+
+
+    public boolean isTokenValid(String jwt,UserDetails userDetails)
+    {
+        final String userName=extractUserName(jwt);
+        return (userName.equals(userDetails.getUsername())) && isTokenIsExpired(jwt);
+    }
+
     public String generateTokens(UserDetails userDetails)
     {
         return generateToken(new HashMap<>(),userDetails);
