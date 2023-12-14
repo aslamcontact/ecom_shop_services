@@ -26,41 +26,6 @@ public class JwtService {
     }
 
 
-    public String extractUserName(String jwt)
-    {
-        return extractClaim(jwt,Claims::getSubject);
-    }
-
-    private Date extracrExpiration(String jwt)
-    {
-        return  extractClaim(jwt,Claims::getExpiration);
-    }
-    public <T> T extractClaim(String jwt, Function<Claims,T> claimsResolver)
-    {
-        final Claims claims=extractAllClaims(jwt);
-        return claimsResolver.apply(claims);
-    }
-    public Claims extractAllClaims(String jwt)
-    {
-        return Jwts.parserBuilder()
-                .setSigningKey(getSignInKey())
-                .build()
-                .parseClaimsJwt(jwt)
-                .getBody();
-    }
-
-    public boolean isTokenValid(String jwt, UserDetails userDetails)
-    {
-        final String userName=extractUserName(jwt);
-        return (userName.equals(userDetails.getUsername())) && isTokenIsExpired(jwt);
-    }
-
-    private boolean isTokenIsExpired(String jwt)
-    {
-        return extracrExpiration(jwt).before(new Date());
-    }
-
-
 
     public String generateTokens(UserDetails userDetails)
     {
