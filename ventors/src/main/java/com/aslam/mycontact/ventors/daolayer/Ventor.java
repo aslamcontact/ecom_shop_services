@@ -4,10 +4,7 @@ import com.aslam.mycontact.ventors.daolayer.ventordetails.Address;
 import com.aslam.mycontact.ventors.daolayer.ventordetails.Details;
 
 import com.aslam.mycontact.ventors.daolayer.ventordetails.VentorPersonalDetails;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +15,11 @@ import java.util.List;
 @Entity
 public class Ventor implements UserDetails {
     @Id
+    @SequenceGenerator( name="ventor_id_seq",
+                        sequenceName = "ventor_id_seq",
+                        allocationSize = 1)
+    @GeneratedValue( strategy = GenerationType.SEQUENCE,
+                     generator = "ventor_id_seq")
     private Integer ventorId;
     private String email;
     private Integer mobileNumber;
